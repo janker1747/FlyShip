@@ -1,7 +1,6 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(InputReader))]
 public class ShipMover : MonoBehaviour
 {
     [SerializeField] private float _tapForce = 5f;
@@ -12,15 +11,15 @@ public class ShipMover : MonoBehaviour
 
     private Vector3 _startPosition;
     private Rigidbody2D _rigidbody;
-    private InputReader _inputReader;
     private Quaternion _maxRotation;
     private Quaternion _minRotation;
 
     private void Awake()
     {
-        _inputReader = GetComponent<InputReader>();
-        _startPosition = transform.position;
         _rigidbody = GetComponent<Rigidbody2D>();
+        _startPosition = transform.position;
+
+        _rigidbody.freezeRotation = true;
 
         _maxRotation = Quaternion.Euler(0, 0, _maxRotationZ);
         _minRotation = Quaternion.Euler(0, 0, _minRotationZ);
@@ -28,22 +27,12 @@ public class ShipMover : MonoBehaviour
         Reset();
     }
 
-    private void OnEnable()
-    {
-        _inputReader.JumpPressed += Move;
-    }
-
-    private void OnDisable()
-    {
-        _inputReader.JumpPressed -= Move;
-    }
-
     private void Update()
     {
         RotateShip();
     }
 
-    private void Move()
+    public void Move()
     {
         _rigidbody.velocity = new Vector2(_speed, _tapForce);
     }
