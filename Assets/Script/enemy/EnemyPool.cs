@@ -13,24 +13,29 @@ public class EnemyPool : MonoBehaviour
     {
         for (int i = 0; i < _poolSize; i++)
         {
-            Enemy bullet = Instantiate(_prefab);
-            bullet.gameObject.SetActive(false);
-            _pool.Enqueue(bullet);
+            Enemy enemy = Instantiate(_prefab);
+            enemy.SetPool(this);
+            enemy.gameObject.SetActive(false);
+            _pool.Enqueue(enemy);
         }
     }
 
     public Enemy GetObject()
     {
+        Enemy enemy;
+
         if (_pool.Count > 0)
         {
-            Enemy enemy = Instantiate(_prefab);
-            return enemy;
+            enemy = _pool.Dequeue();
+        }
+        else
+        {
+            enemy = Instantiate(_prefab);
+            enemy.SetPool(this); 
         }
 
-        Enemy enemyPool = _pool.Dequeue();
-        enemyPool.gameObject.SetActive(true);
-        return enemyPool;
-
+        enemy.gameObject.SetActive(true);
+        return enemy;
     }
 
     public void ReturnObject(Enemy enemy)

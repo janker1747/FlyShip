@@ -1,10 +1,11 @@
+using Assets.Script.general;
 using System;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public abstract class Bullet : MonoBehaviour, Death
 {
     [SerializeField] private float _speed = 10f;
-    [SerializeField] private float _rayLengthMultiplier = 1.5f; 
+    [SerializeField] private float _rayLengthMultiplier = 1.5f;
     [SerializeField] private LayerMask _enemyMask;
 
     private Vector2 _direction;
@@ -19,6 +20,18 @@ public class Bullet : MonoBehaviour
         gameObject.SetActive(true);
     }
 
+    protected virtual void OnHit(Collider2D collider)
+    {
+        BulletHit?.Invoke(this);
+
+        if (collider.TryGetComponent(out Ship ship))
+        {
+            ship.Destroy();
+        }
+
+        gameObject.SetActive(false);
+    }
+
     private void Update()
     {
         Vector3 currentPosition = transform.position;
@@ -30,9 +43,7 @@ public class Bullet : MonoBehaviour
 
         if (hit.collider != null)
         {
-            BulletHit?.Invoke(this);
-            hit.collider.gameObject.SetActive(false); 
-            gameObject.SetActive(false);             
+            OnHit(hit.collider);
             return;
         }
 

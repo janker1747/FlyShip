@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Game : MonoBehaviour
@@ -7,6 +6,7 @@ public class Game : MonoBehaviour
     [SerializeField] private ShipMover _shipMover ;
     [SerializeField] private StartScreen _startScreen;
     [SerializeField] private EndGameScreen _endGameScreen;
+    [SerializeField] private ScoreCounter _scoreCounter ;
 
     private void OnEnable()
     {
@@ -36,6 +36,7 @@ public class Game : MonoBehaviour
 
     private void OnRestartButtonClick()
     {
+        _scoreCounter.ResetScore();
         _endGameScreen.Close();
         StartGame();
     }

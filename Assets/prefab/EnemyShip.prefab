@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 6806856446952192395}
   - component: {fileID: 7039400100980247000}
   - component: {fileID: -3879355583436847304}
+  - component: {fileID: 8543554059721377870}
   m_Layer: 3
   m_Name: EnemyShip
   m_TagString: Untagged
@@ -230,6 +231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328339d3ca955d4489056c0c9ab55cab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _scoreCounter: {fileID: 0}
 --- !u!114 &7039400100980247000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,5 +260,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a3c3ffb6d214324280480364879b51a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bullet: {fileID: -4497342220203053571, guid: bbe8971fa01809f47813c30ed66a7522, type: 3}
+  _bullet: {fileID: 1974424940130326721, guid: bbe8971fa01809f47813c30ed66a7522, type: 3}
   _poolSize: 30
+--- !u!114 &8543554059721377870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084162133634935282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81eb8bc81c0da0744aaf854012319bf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

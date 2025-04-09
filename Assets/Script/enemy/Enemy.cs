@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
+using Assets.Script.general;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, Death
 {
-    // Start is called before the first frame update
-    void Start()
+    private EnemyPool _enemyPool;
+
+    public void SetPool(EnemyPool pool)
     {
-        
+        _enemyPool = pool;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Destroy()
     {
-        
+        GameEvents.Instance.OnEnemyDestroyed();
+        _enemyPool.ReturnObject(this);
     }
 }

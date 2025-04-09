@@ -37,9 +37,8 @@ public class Ship : MonoBehaviour
         _inputReader.FirePressed -= _shoter.Shoot;
     }
 
-    private void Destroy()
+    public void Destroy()
     {
         GameOver?.Invoke(); 
-        gameObject.SetActive(false);
     }
 }

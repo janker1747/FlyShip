@@ -31,9 +31,9 @@ public class EnemySpawner : MonoBehaviour
         float spawnPositionY = Random.Range(_upperBound, _lowerBound);
         Vector3 spawnPoint = new Vector3(transform.position.x, spawnPositionY, transform.position.z);
 
-        var pipe = _pool.GetObject();
+        Enemy enemy = _pool.GetObject();
 
-        pipe.gameObject.SetActive(true);
-        pipe.transform.position = spawnPoint;
+        enemy.gameObject.SetActive(true);
+        enemy.transform.position = spawnPoint;
     }
 }
